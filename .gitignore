@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+.venv/
+backend/.venv/
+
+# Build outputs
+dist/
+build/
+
+# Database & runtime files
+*.db
+simulation.db
+
+# Environment & local secrets
+.env
+.env.local
+
+# Python caches & bytecode
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# System & IDE files
+.DS_Store
+.vscode/
+.idea/
+*.log
