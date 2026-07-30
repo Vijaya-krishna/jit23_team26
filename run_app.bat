@@ -7,6 +7,9 @@ echo.
 
 cd /d "%~dp0"
 
+echo Freeing port 8000 if previously occupied...
+for /f "tokens=5" %%a in ('netstat -aon 2^>nul ^| findstr :8000 2^>nul ^| findstr LISTENING 2^>nul') do taskkill /f /pid %%a >nul 2>&1
+
 echo [1/2] Launching Backend Server on http://localhost:8000 ...
 start "Cloud Simulator - Backend API" cmd /k "cd /d %~dp0 && backend\.venv\Scripts\python.exe -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload"
 
