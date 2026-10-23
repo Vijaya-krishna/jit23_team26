@@ -1,0 +1,5 @@
+scheduler,total_tasks,completed_tasks,failed_tasks,pending_tasks,failure_rate_pct,makespan_seconds,throughput_tasks_per_sec,avg_completion_time_sec,median_completion_time_sec,p95_completion_time_sec,min_completion_time_sec,max_completion_time_sec,avg_waiting_time_sec,tasks_with_deadlines,deadline_misses,deadline_miss_rate_pct,deadline_satisfaction_rate_pct,total_energy_wh,total_energy_joules,active_energy_wh,idle_energy_wh,sleep_energy_wh,wakeup_overhead_wh,total_state_transitions,total_wake_ups,avg_active_servers,total_servers,energy_savings_vs_baseline_pct
+FCFS,80,80,0,0,0.0,145.01,0.5517,23.39,25.02,33.11,10.35,34.38,0.0,65,0,0.0,100.0,31.1105,111997.76,9.7822,18.1387,3.023,0.1667,14,1,2.17,8,0.0
+Round Robin,80,80,0,0,0.0,145.01,0.5517,23.39,25.02,33.11,10.35,34.38,0.0,65,0,0.0,100.0,53.6967,193308.22,5.3601,48.3367,0.0,0.0,24,0,7.61,8,-72.6
+Load Balancing,80,80,0,0,0.0,145.01,0.5517,23.39,25.02,33.11,10.35,34.38,0.0,65,0,0.0,100.0,53.0662,191038.32,4.7295,48.3367,0.0,0.0,44,0,7.5,8,-70.57
+EADCS,80,80,0,0,0.0,145.01,0.5517,23.39,25.02,33.11,10.35,34.38,0.0,65,0,0.0,100.0,28.9076,104067.4,7.423,18.501,2.9836,0.0,10,0,1.92,8,7.08

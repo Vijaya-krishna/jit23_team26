@@ -1,0 +1,52 @@
+{
+  "simulation": {
+    "default_duration": 600.0,
+    "time_step": 1.0,
+    "random_seed": 42,
+    "cooldown_period": 10.0,
+    "enable_sleep_state": true
+  },
+  "datacenter": {
+    "num_servers": 8,
+    "server_presets": [
+      {
+        "type": "standard_node",
+        "cpu_capacity": 16.0,
+        "memory_capacity": 64.0,
+        "idle_power": 120.0,
+        "max_power": 300.0,
+        "sleep_power": 12.0,
+        "wake_up_energy": 600.0,
+        "wake_up_delay": 4.0,
+        "alpha": 1.5,
+        "idle_timeout_to_sleep": 15.0
+      },
+      {
+        "type": "high_memory_node",
+        "cpu_capacity": 32.0,
+        "memory_capacity": 128.0,
+        "idle_power": 180.0,
+        "max_power": 450.0,
+        "sleep_power": 18.0,
+        "wake_up_energy": 900.0,
+        "wake_up_delay": 5.0,
+        "alpha": 1.6,
+        "idle_timeout_to_sleep": 20.0
+      }
+    ]
+  },
+  "eadcs_weights": {
+    "w_energy": 0.40,
+    "w_time": 0.20,
+    "w_deadline": 0.15,
+    "w_load": 0.10,
+    "w_state": 0.10,
+    "w_frag": 0.05
+  },
+  "consolidation": {
+    "target_cpu_utilization": 0.80,
+    "overload_cpu_threshold": 0.90,
+    "underload_cpu_threshold": 0.30,
+    "hysteresis_window": 10.0
+  }
+}

@@ -1,28 +1,43 @@
-# Dependencies
-node_modules/
-.venv/
-backend/.venv/
-
-# Build outputs
-dist/
-build/
-
-# Database & runtime files
-*.db
-simulation.db
-
-# Environment & local secrets
-.env
-.env.local
-
-# Python caches & bytecode
+# Python
 __pycache__/
-*.pyc
-*.pyo
-.pytest_cache/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+.venv/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# System & IDE files
-.DS_Store
-.vscode/
-.idea/
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs & temp
 *.log
+logs/
+temp/
+.DS_Store
+Thumbs.db
+
+# Private Viva & Review defense guides (not for public repo)
+VIVA_AND_REVIEW_DEFENSE_GUIDE.md
+*viva*
+*defense*
+*defence*
