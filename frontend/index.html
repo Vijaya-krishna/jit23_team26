@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy-Aware Dynamic Task Scheduling Framework | Big Data Simulation Platform</title>
+    <meta name="description" content="Research-grade cloud datacenter simulation engine, EADCS multi-objective energy optimization algorithm, and real-time performance evaluation dashboard.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Plotly.js for Scientific Visualizations -->
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="navbar" id="mainNavbar">
+        <div class="nav-container">
+            <div class="brand">
+                <div class="brand-logo-icon">⚡</div>
+                <div class="brand-text">
+                    <h1>Energy-Aware Task Scheduler</h1>
+                    <span class="subtext">Big Data Cloud Simulation & Optimization Engine</span>
+                </div>
+            </div>
+            <div class="nav-actions">
+                <div class="status-badge" id="backendStatusBadge">
+                    <span class="status-dot pulsing"></span>
+                    <span id="backendStatusText">Connecting API...</span>
+                </div>
+                <a href="/docs" target="_blank" class="nav-link-btn" id="apiDocsBtn">
+                    <span class="btn-icon">📚</span> REST API Docs
+                </a>
+                <a href="https://github.com/Vijaya-krishna/jit23_team26" target="_blank" class="nav-link-btn primary" id="githubRepoBtn">
+                    <span class="btn-icon">🐙</span> GitHub
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation Tabs -->
+    <nav class="tab-nav">
+        <div class="tab-container">
+            <button class="tab-btn active" data-tab="tab-overview" id="tabBtnOverview">
+                <span class="tab-icon">📊</span> Overview & KPIs
+            </button>
+            <button class="tab-btn" data-tab="tab-benchmarks" id="tabBtnBenchmarks">
+                <span class="tab-icon">⚖️</span> Algorithm Benchmark
+            </button>
+            <button class="tab-btn" data-tab="tab-simulation" id="tabBtnSimulation">
+                <span class="tab-icon">⚡</span> Simulation Sandbox
+            </button>
+            <button class="tab-btn" data-tab="tab-topology" id="tabBtnTopology">
+                <span class="tab-icon">🖥️</span> Cluster Topology
+            </button>
+            <button class="tab-btn" data-tab="tab-docs" id="tabBtnDocs">
+                <span class="tab-icon">📖</span> Math & Architecture
+            </button>
+        </div>
+    </nav>
+
+    <!-- App Content Wrapper -->
+    <main class="content-wrapper">
+
+        <!-- TAB 1: EXECUTIVE OVERVIEW & KPIS -->
+        <section class="tab-content active" id="tab-overview">
+            <div class="hero-banner">
+                <div class="hero-text">
+                    <h2>Multi-Objective Energy-Aware Cloud Task Scheduling</h2>
+                    <p>
+                        Evaluating the proposed <strong>EADCS</strong> algorithm against industry baselines 
+                        (<strong>FCFS</strong>, <strong>Round Robin</strong>, <strong>Load Balancing</strong>) 
+                        using non-linear power dynamics, sleep states, and wake penalty amortization.
+                    </p>
+                </div>
+                <div class="hero-pills">
+                    <span class="pill green">🌿 Eco-Mode: 27.5% Energy Savings</span>
+                    <span class="pill blue">⚡ PUE Factor: 1.20</span>
+                    <span class="pill purple">🎯 100% SLA Compliance</span>
+                </div>
+            </div>
+
+            <!-- Hero KPI Grid -->
+            <div class="kpi-grid">
+                <div class="kpi-card highlight-green">
+                    <div class="kpi-header">
+                        <span class="kpi-label">EADCS Energy Savings</span>
+                        <span class="kpi-badge positive">-27.47%</span>
+                    </div>
+                    <div class="kpi-value" id="kpiEnergySavings">27.5%</div>
+                    <div class="kpi-detail">Compared against standard FCFS baseline on medium workload</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-label">Total Energy (EADCS)</span>
+                        <span class="kpi-badge blue">Proposed</span>
+                    </div>
+                    <div class="kpi-value" id="kpiTotalEnergy">0.589 <span class="unit">kWh</span></div>
+                    <div class="kpi-detail">Consolidated active servers vs 0.812 kWh (FCFS)</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-label">Carbon Footprint</span>
+                        <span class="kpi-badge green">Reduced</span>
+                    </div>
+                    <div class="kpi-value" id="kpiCarbon">0.280 <span class="unit">kg CO₂e</span></div>
+                    <div class="kpi-detail">Regional grid factor 0.475 kg/kWh amortized</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-label">SLA Violations Rate</span>
+                        <span class="kpi-badge positive">Optimal</span>
+                    </div>
+                    <div class="kpi-value" id="kpiSLA">0.0%</div>
+                    <div class="kpi-detail">Zero deadline misses across all evaluated tasks</div>
+                </div>
+            </div>
+
+            <!-- Overview Charts Row -->
+            <div class="charts-row">
+                <div class="chart-card">
+                    <div class="card-header">
+                        <h3>Energy Consumption Across Schedulers (kWh)</h3>
+                        <span class="card-subtitle">Lower is better</span>
+                    </div>
+                    <div id="chartOverviewEnergy" class="plot-container"></div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="card-header">
+                        <h3>Makespan & Schedule Efficiency (Seconds)</h3>
+                        <span class="card-subtitle">Total workload turnaround</span>
+                    </div>
+                    <div id="chartOverviewMakespan" class="plot-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: ALGORITHM BENCHMARK MATRIX -->
+        <section class="tab-content" id="tab-benchmarks">
+            <div class="section-header">
+                <div>
+                    <h2>Comprehensive Algorithm Benchmark Evaluation</h2>
+                    <p>Quantitative empirical comparison across heterogeneous cluster nodes.</p>
+                </div>
+                <div class="workload-selector-group">
+                    <label for="benchmarkWorkloadSelect">Workload Trace:</label>
+                    <select id="benchmarkWorkloadSelect" class="form-select">
+                        <option value="medium" selected>Medium Load (60 Tasks - Balanced)</option>
+                        <option value="low">Low Load (40 Tasks - Sleep Opportunities)</option>
+                        <option value="bursty">Bursty Workload (80 Tasks - Spiky Arrival)</option>
+                    </select>
+                    <button class="btn primary" id="btnRunBenchmark">
+                        <span class="btn-icon">⚡</span> Run Benchmark
+                    </button>
+                </div>
+            </div>
+
+            <!-- Benchmark Charts Grid -->
+            <div class="charts-row">
+                <div class="chart-card">
+                    <div class="card-header">
+                        <h3>Energy Consumption vs Baseline (kWh)</h3>
+                    </div>
+                    <div id="chartBenchmarkEnergy" class="plot-container"></div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="card-header">
+                        <h3>Carbon Footprint Comparison (kg CO₂e)</h3>
+                    </div>
+                    <div id="chartBenchmarkCarbon" class="plot-container"></div>
+                </div>
+            </div>
+
+            <div class="charts-row">
+                <div class="chart-card">
+                    <div class="card-header">
+                        <h3>Average Task Waiting Time (Seconds)</h3>
+                    </div>
+                    <div id="chartBenchmarkWaitTime" class="plot-container"></div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="card-header">
+                        <h3>Average Cluster CPU Utilization (%)</h3>
+                    </div>
+                    <div id="chartBenchmarkCPU" class="plot-container"></div>
+                </div>
+            </div>
+
+            <!-- Comparison Table Card -->
+            <div class="table-card">
+                <div class="card-header">
+                    <h3>Head-to-Head Performance Evaluation Matrix</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table" id="benchmarkTable">
+                        <thead>
+                            <tr>
+                                <th>Algorithm</th>
+                                <th>Paradigm</th>
+                                <th>Energy (kWh)</th>
+                                <th>Savings vs FCFS</th>
+                                <th>Carbon (kg)</th>
+                                <th>Makespan (s)</th>
+                                <th>Avg Wait (s)</th>
+                                <th>CPU Util (%)</th>
+                                <th>SLA Violations</th>
+                            </tr>
+                        </thead>
+                        <tbody id="benchmarkTableBody">
+                            <!-- Populated dynamically by app.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: INTERACTIVE SIMULATION SANDBOX -->
+        <section class="tab-content" id="tab-simulation">
+            <div class="section-header">
+                <div>
+                    <h2>Interactive Discrete-Event Simulation Sandbox</h2>
+                    <p>Adjust optimization weights, task density, and dispatch simulation in real-time.</p>
+                </div>
+            </div>
+
+            <div class="sandbox-layout">
+                <!-- Sandbox Controls -->
+                <div class="control-panel">
+                    <h3>Simulation Parameters</h3>
+
+                    <div class="form-group">
+                        <label for="simAlgorithmSelect">Scheduling Algorithm</label>
+                        <select id="simAlgorithmSelect" class="form-select">
+                            <option value="eadcs" selected>EADCS (Proposed Multi-Objective)</option>
+                            <option value="fcfs">FCFS (First-Come First-Served)</option>
+                            <option value="round_robin">Round Robin</option>
+                            <option value="load_balancing">Load Balancing</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="simWorkloadSelect">Workload Pattern</label>
+                        <select id="simWorkloadSelect" class="form-select">
+                            <option value="medium" selected>Medium Load (Batch Mixed)</option>
+                            <option value="low">Low Load (Idle Consolidation)</option>
+                            <option value="bursty">Bursty Traffic (Spike Load)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="label-with-value">
+                            <label for="simTasksSlider">Task Count</label>
+                            <span class="range-val" id="simTasksVal">60</span>
+                        </div>
+                        <input type="range" id="simTasksSlider" min="10" max="150" step="5" value="60" class="form-range">
+                    </div>
+
+                    <div class="form-group" id="alphaGroup">
+                        <div class="label-with-value">
+                            <label for="simAlphaSlider">Energy Weight (α)</label>
+                            <span class="range-val" id="simAlphaVal">0.60</span>
+                        </div>
+                        <input type="range" id="simAlphaSlider" min="0.0" max="1.0" step="0.05" value="0.6" class="form-range">
+                    </div>
+
+                    <div class="form-group" id="betaGroup">
+                        <div class="label-with-value">
+                            <label for="simBetaSlider">Makespan Weight (β)</label>
+                            <span class="range-val" id="simBetaVal">0.40</span>
+                        </div>
+                        <input type="range" id="simBetaSlider" min="0.0" max="1.0" step="0.05" value="0.4" class="form-range" disabled>
+                        <small class="form-help">Normalized constraint: α + β = 1.0</small>
+                    </div>
+
+                    <button class="btn primary full-width" id="btnRunSimulation">
+                        <span class="btn-icon">🚀</span> Run Simulation
+                    </button>
+                </div>
+
+                <!-- Sandbox Results Display -->
+                <div class="sandbox-results">
+                    <div class="results-kpi-row" id="sandboxKpis">
+                        <div class="mini-kpi">
+                            <span class="mini-label">Energy Consumed</span>
+                            <span class="mini-val" id="simResEnergy">--</span>
+                        </div>
+                        <div class="mini-kpi">
+                            <span class="mini-label">Carbon Footprint</span>
+                            <span class="mini-val" id="simResCarbon">--</span>
+                        </div>
+                        <div class="mini-kpi">
+                            <span class="mini-label">Makespan</span>
+                            <span class="mini-val" id="simResMakespan">--</span>
+                        </div>
+                        <div class="mini-kpi">
+                            <span class="mini-label">Avg Waiting Time</span>
+                            <span class="mini-val" id="simResWait">--</span>
+                        </div>
+                        <div class="mini-kpi">
+                            <span class="mini-label">Tasks Completed</span>
+                            <span class="mini-val" id="simResTasks">--</span>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <h3>Server Workload Distribution & Energy Share</h3>
+                        </div>
+                        <div id="chartSimulationServers" class="plot-container"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: DATACENTER INFRASTRUCTURE TOPOLOGY -->
+        <section class="tab-content" id="tab-topology">
+            <div class="section-header">
+                <div>
+                    <h2>Simulated Datacenter Cluster Topology</h2>
+                    <p>Live status, power state, and hardware resource utilization per physical server node.</p>
+                </div>
+                <div class="legend-group">
+                    <span class="legend-item"><span class="legend-box active"></span> ACTIVE (Processing)</span>
+                    <span class="legend-item"><span class="legend-box idle"></span> IDLE (Baseload)</span>
+                    <span class="legend-item"><span class="legend-box sleep"></span> SLEEP (Low Power 10W)</span>
+                </div>
+            </div>
+
+            <!-- Server Grid -->
+            <div class="topology-grid" id="topologyGrid">
+                <!-- Dynamically populated by app.js -->
+            </div>
+        </section>
+
+        <!-- TAB 5: MATH & ARCHITECTURE -->
+        <section class="tab-content" id="tab-docs">
+            <div class="doc-card">
+                <h2>Mathematical Modeling & System Formulations</h2>
+                <hr class="doc-divider">
+
+                <div class="math-section">
+                    <h3>1. Non-Linear Server Power Scaling</h3>
+                    <p>Real-world processor CMOS characteristics exhibit dynamic curvature modeled with an exponential factor $\alpha \approx 1.4$:</p>
+                    <div class="code-box">
+                        P(u) = P_idle + (P_max - P_idle) × u^α
+                    </div>
+                    <p>Where $u \in [0.0, 1.0]$ represents instantaneous CPU utilization, $P_{\text{idle}} \approx 95\text{--}140\text{ W}$, and $P_{\text{max}} \approx 320\text{--}480\text{ W}$.</p>
+                </div>
+
+                <div class="math-section">
+                    <h3>2. EADCS Multi-Objective Cost Heuristic</h3>
+                    <p>For candidate server $s$ and incoming task $t$, allocation is determined by minimizing:</p>
+                    <div class="code-box">
+                        C(s, t) = α · [ ΔE(s, t) / E_norm ] + β · [ (AFT(s, t) - Arrival(t)) / T_norm ] + Penalty_wake(s)
+                    </div>
+                    <p>Where $\Delta E(s, t)$ is marginal integrated energy draw, $\text{AFT}(s, t)$ is Actual Finish Time, and $\text{Penalty}_{\text{wake}}(s)$ penalizes waking cold nodes from sleep state.</p>
+                </div>
+
+                <div class="math-section">
+                    <h3>3. Sleep State & Break-Even Amortization</h3>
+                    <p>To avoid thrashing (waking energy cost $E_{\text{wake}} = 1750\text{ Joules}$), servers only sleep when idle duration exceeds:</p>
+                    <div class="code-box">
+                        T_break_even = E_wake / (P_idle - P_sleep) ≈ 1750 J / (100 W - 10 W) ≈ 19.4 seconds
+                    </div>
+                </div>
+
+                <div class="doc-actions">
+                    <a href="/docs" target="_blank" class="btn primary">
+                        <span class="btn-icon">⚡</span> Open FastAPI Swagger UI
+                    </a>
+                    <a href="https://github.com/Vijaya-krishna/jit23_team26" target="_blank" class="btn secondary">
+                        <span class="btn-icon">📁</span> View GitHub Source Code
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <p>Energy-Aware Dynamic Task Scheduling Framework for Big Data Processing • Final Year Capstone Project</p>
+        <p class="sub">Deployed on Vercel Serverless Architecture • JIT Team 26</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

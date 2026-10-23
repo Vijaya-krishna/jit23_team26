@@ -131,10 +131,18 @@ def _get_scheduler_instance(alg: str, alpha: float = 0.6, beta: float = 0.4):
         )
 
 
+from fastapi.responses import FileResponse
+
+# Static Frontend Path
+_frontend_dir = os.path.abspath(os.path.join(_current_dir, "..", "frontend"))
+
 # --- API Endpoints ---
 
-@app.get("/")
+@app.get("/", include_in_schema=False)
 def root():
+    index_path = os.path.join(_frontend_dir, "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path)
     return {
         "status": "online",
         "service": "Energy-Aware Dynamic Task Scheduling Framework Backend",
@@ -142,6 +150,20 @@ def root():
         "docs": "/docs",
         "supported_algorithms": ["eadcs", "fcfs", "round_robin", "load_balancing"]
     }
+
+@app.get("/style.css", include_in_schema=False)
+def serve_css():
+    css_path = os.path.join(_frontend_dir, "style.css")
+    if os.path.exists(css_path):
+        return FileResponse(css_path, media_type="text/css")
+    raise HTTPException(status_code=404, detail="style.css not found")
+
+@app.get("/app.js", include_in_schema=False)
+def serve_js():
+    js_path = os.path.join(_frontend_dir, "app.js")
+    if os.path.exists(js_path):
+        return FileResponse(js_path, media_type="application/javascript")
+    raise HTTPException(status_code=404, detail="app.js not found")
 
 
 @app.get("/api/v1/health")

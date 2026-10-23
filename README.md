@@ -31,6 +31,25 @@ Simply double-click either script from Windows Explorer or run from PowerShell:
 
 ---
 
+## ☁️ Deploying Both Frontend & Backend on Vercel
+
+This repository is pre-configured for seamless full-stack deployment on **[Vercel](https://vercel.com)**:
+- **Backend API**: Hosted as serverless Python ASGI functions via [`api/index.py`](api/index.py) & [`vercel.json`](vercel.json).
+- **Frontend Web Dashboard**: Hosted as high-performance static SPA via [`frontend/index.html`](frontend/index.html), [`frontend/style.css`](frontend/style.css), and [`frontend/app.js`](frontend/app.js).
+
+### Step-by-Step Vercel Deployment:
+1. Open **[vercel.com/new](https://vercel.com/new)** and sign in with your GitHub account.
+2. Select and import repository: **`Vijaya-krishna/jit23_team26`**.
+3. Keep default settings (**Framework Preset: Other**, Root Directory: `./`).
+4. Click **Deploy**!
+
+Once deployed, your application provides:
+- 🌐 **Web Dashboard**: `https://<your-app>.vercel.app/`
+- ⚡ **Backend API**: `https://<your-app>.vercel.app/api/v1/health`
+- 📚 **Swagger API Docs**: `https://<your-app>.vercel.app/docs`
+
+---
+
 ## 📖 Key Documentation
 
 For in-depth mathematical proofs, power formulas, algorithm pseudocode, and benchmark results, see:

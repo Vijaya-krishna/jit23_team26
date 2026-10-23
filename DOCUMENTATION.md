@@ -48,6 +48,8 @@ The framework is decoupled into a modular **Backend** (core simulation engine, m
 
 ```
 jit23_team26/
+├── api/                                 # Vercel Serverless Function Directory
+│   └── index.py                         # Vercel ASGI serverless entrypoint
 ├── backend/                             # Core Engine & REST API Service
 │   ├── config/                          # Cluster & simulation configuration profiles
 │   │   └── default_config.json
@@ -78,8 +80,12 @@ jit23_team26/
 ├── frontend/                            # Interactive UI & Analytics Dashboard
 │   ├── .streamlit/                      # Dark-theme visual tokens & layout config
 │   │   └── config.toml
+│   ├── index.html                       # Vercel-ready modern responsive web dashboard
+│   ├── style.css                        # Glassmorphism dark mode stylesheet
+│   ├── app.js                           # Plotly analytics & live API connector
 │   ├── app.py                           # Full-featured Streamlit simulation workbench
 │   └── requirements.txt                 # Frontend Python dependencies
+├── vercel.json                          # Vercel Serverless & Static routing configuration
 ├── DOCUMENTATION.md                     # Comprehensive technical documentation (this document)
 ├── README.md                            # Quick-start guide & repository overview
 ├── requirements.txt                     # Unified umbrella requirements
