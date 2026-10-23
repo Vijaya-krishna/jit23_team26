@@ -6,9 +6,9 @@ echo =====================================================================
 cd /d "%~dp0"
 if exist ".venv\Scripts\streamlit.exe" (
     echo [INFO] Using virtual environment Streamlit...
-    ".venv\Scripts\streamlit.exe" run frontend/app.py --server.port 8501
+    ".venv\Scripts\streamlit.exe" run frontend/streamlit_app.py --server.port 8501
 ) else (
     echo [INFO] Using system Streamlit...
-    streamlit run frontend/app.py --server.port 8501
+    streamlit run frontend/streamlit_app.py --server.port 8501
 )
 pause
