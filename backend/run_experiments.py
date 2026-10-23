@@ -5,7 +5,13 @@ saves metrics to reports/, and generates HTML and Markdown reports with real sim
 """
 
 import os
+import sys
 import json
+
+# Ensure backend directory is in sys.path
+_current_dir = os.path.dirname(os.path.abspath(__file__))
+if _current_dir not in sys.path:
+    sys.path.insert(0, _current_dir)
 from src.models.server import Server
 from src.algorithms.fcfs import FCFSScheduler
 from src.algorithms.round_robin import RoundRobinScheduler
